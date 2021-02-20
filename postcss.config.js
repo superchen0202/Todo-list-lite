@@ -1,5 +1,6 @@
 let environment = {
   plugins: [
+    require("tailwindcss")("./app/frontendsource/styles/tailwind.config.js"),
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
