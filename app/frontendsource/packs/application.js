@@ -16,13 +16,14 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-document.addEventListener("turbolinks:load", ()=>{
+document.addEventListener("turbolinks:load", () =>{
 
     let el = document.querySelector("#board");
+    // console.log(el);
 
     if(el){
         new Vue({
-            
+
             el: el,
             data: {
                 lists: JSON.parse(el.dataset.lists),
