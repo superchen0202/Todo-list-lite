@@ -1,7 +1,9 @@
 <div class="flex py-5">
   
   <% @lists.each do |list| %> 
-    <div class="bg-gray-300 mx-2 w-64 rounded text-center"><%= list.name %></div>
+    <div class="bg-gray-300 mx-2 w-64 rounded text-center">
+      <h2 class="px-3 py-2 font-thin"><%= list.name %></h2>
+    </div>
   <% end %>
 
 </div>
