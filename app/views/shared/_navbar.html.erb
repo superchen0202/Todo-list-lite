@@ -1,8 +1,18 @@
-<nav class="bg-blue-500 px-3 py-5 text-3xl font-bold text-white">
+<nav class="bg-blue-500 px-3 py-5 text-3xl font-bold text-blue-100 flex justify-between">
     
-    <%= link_to root_path do %>
-        <i class="fab fa-trello"></i>
-        trello
-    <% end %>
-  
+    <!-- logo -->
+    <a href="/">
+        <i class="fab fa-trello"></i>Trello
+    </a>
+    
+    <!-- 登入 / 註冊 / 登出 -->
+    <div>
+        <% unless user_signed_in?%>
+            <%= link_to "登入", new_user_session_path, class:"user-button" %>
+            <%= link_to "註冊", new_user_registration_path, class:"user-button"  %> 
+        <% else %>
+            <%= link_to "登出", user_registration_path, method:"destroy", data: {confirm: "確定登出？"}, class:"user-button"  %>   
+        <% end %>
+    </div>
+
 </nav>
