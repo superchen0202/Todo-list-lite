@@ -5,6 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :lists
-
+  has_many :lists, -> {order(position: :asc)}
 end
