@@ -1,4 +1,4 @@
-<nav class="bg-blue-500 px-3 py-5 text-3xl font-bold text-blue-100 flex justify-between">
+<nav class="bg-blue-500 px-3 py-5 text-2xl font-bold text-blue-100 flex justify-between">
     
     <!-- logo -->
     <a href="/">
@@ -7,11 +7,12 @@
     
     <!-- 登入 / 註冊 / 登出 -->
     <div>
-        <% unless user_signed_in?%>
+        <% unless user_signed_in? %>
             <%= link_to "登入", new_user_session_path, class:"user-button" %>
             <%= link_to "註冊", new_user_registration_path, class:"user-button"  %> 
         <% else %>
-            <%= link_to "登出", user_registration_path, method:"destroy", data: {confirm: "確定登出？"}, class:"user-button"  %>   
+            <span><%= current_user.email %></span>
+            <%= link_to "登出", destroy_user_session_path, method:"delete", data: {confirm: "確定登出？"}, class:"user-button"  %>   
         <% end %>
     </div>
 

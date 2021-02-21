@@ -23,7 +23,7 @@ nav{
     
     .user-button{
 
-        @apply px-3 py-2 bg-blue-300 rounded-sm;
+        @apply px-3 py-2 bg-blue-300 rounded-tl-sm;
 
         &:hover{
             @apply bg-blue-200;
