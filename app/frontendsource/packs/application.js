@@ -9,9 +9,25 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "styles"
 
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm';
 
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener("turbolinks:load", ()=>{
+
+    let el = document.querySelector("#board");
+
+    if(el){
+        new Vue({
+            
+            el: el,
+            data: {
+                lists: JSON.parse(el.dataset.lists),
+            }
+        })
+    }
+
+})
