@@ -16,6 +16,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import List from "components/list";
+
 document.addEventListener("turbolinks:load", () =>{
 
     let el = document.querySelector("#board");
@@ -27,7 +29,12 @@ document.addEventListener("turbolinks:load", () =>{
             el: el,
             data: {
                 lists: JSON.parse(el.dataset.lists),
-            }
+            },
+
+            components:{
+                List: List,
+            },
+
         })
     }
 
