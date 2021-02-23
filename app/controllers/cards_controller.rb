@@ -1,6 +1,8 @@
 class CardsController < ApplicationController
+  
   before_action :set_card, only: %i[ show edit update destroy ]
-
+  #skip_before_action :verify_authenticity_token
+  
   # GET /cards or /cards.json
   def index
     @cards = Card.all
@@ -64,6 +66,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :position)
+      params.require(:card).permit(:name, :list_id ,:position)
     end
 end
