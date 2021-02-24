@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :cards
+  resources :cards do
+    member do
+      put :move
+    end
+ 
+  end
   
   # /lists/2/move
   resources :lists do 

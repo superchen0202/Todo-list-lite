@@ -25,9 +25,11 @@ document.addEventListener("turbolinks:load", () =>{
     //console.log(el.dataset.lists);
 
     if(el){
+        
         new Vue({
 
             el: el,
+            
             data: {
                 lists: JSON.parse(el.dataset.lists),
             },
@@ -38,6 +40,7 @@ document.addEventListener("turbolinks:load", () =>{
             },
 
             methods:{
+                
                 MoveList(event){
 
                     // console.log(event);
@@ -55,7 +58,7 @@ document.addEventListener("turbolinks:load", () =>{
                         dataType: "json",
                         
                         success: (response)=>{
-                            console.log(response);
+                            //console.log(response);
                         },
 
                         error: (err)=>{
@@ -64,7 +67,6 @@ document.addEventListener("turbolinks:load", () =>{
 
 
                     })
-
 
                 },
             },

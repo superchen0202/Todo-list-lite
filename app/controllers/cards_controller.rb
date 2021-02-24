@@ -1,11 +1,17 @@
 class CardsController < ApplicationController
   
-  before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :set_card, only: %i[ show edit update destroy move ]
   #skip_before_action :verify_authenticity_token
   
   # GET /cards or /cards.json
   def index
     @cards = Card.all
+  end
+
+  def move
+    # render json: card_params  #{list_id: "5", position: "2"}
+    @card.update(card_params)
+    render "show.json"
   end
 
   # GET /cards/1 or /cards/1.json

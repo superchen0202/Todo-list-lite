@@ -6,7 +6,9 @@
         <h2 class="header">{{list.name}}</h2>
         
         <div class="deck">
-            <Card v-for="card in cards" :card="card" :key="card.id"></Card>
+            <draggable v-model="cards" group="list" @change="MoveCard">
+                <Card v-for="card in cards" :card="card" :key="card.id"></Card>
+            </draggable>
         </div>
 
         <div class="input-area">
@@ -39,6 +41,7 @@ export default{
 
     components:{
         Card: Card,
+        draggable: draggable,
     },
 
     data: function(){
@@ -88,6 +91,42 @@ export default{
         changeMode(event){
             event.preventDefault();
             this.editing = !this.editing;
+        },
+   
+        MoveCard(event){
+            
+            let evt = event.added || event.moved;
+            
+            //---to fileter nil event---
+            if(evt){
+                
+                // console.log(evt);
+                let card_id = evt.element.id;
+                // console.log(card_id);
+                    
+                let data = new FormData();
+                data.append("card[list_id]", this.list.id);
+                data.append("card[position]", evt.newIndex + 1);
+
+                Rails.ajax({
+
+                    url: `/cards/${card_id}/move`,
+                    type: "put",
+                    data: data,
+                    dataType: "json",
+
+                    success: (response)=>{
+                        //console.log(response);
+                    },
+
+                    error: (err) =>{
+                        console.log(err);
+                    },
+
+                })
+
+            }
+
         },
 
     }

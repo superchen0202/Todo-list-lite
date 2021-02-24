@@ -1,10 +1,8 @@
 //html
 <template>
-
     <div class="card">
         {{card.name}}
     </div>
-
 </template>
 
 
