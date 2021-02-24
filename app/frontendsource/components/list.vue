@@ -20,6 +20,8 @@
        
     </div>
 
+
+
 </template>
 
 <!-- JS -->
@@ -27,6 +29,7 @@
 
 import Card from "components/card";
 import Rails from "@rails/ujs"
+import draggable from "vuedraggable";
 
 
 export default{

@@ -10,6 +10,7 @@ import "channels"
 import "styles"
 
 import Vue from 'vue/dist/vue.esm';
+import draggable from "vuedraggable";
 
 
 Rails.start()
@@ -21,7 +22,7 @@ import List from "components/list";
 document.addEventListener("turbolinks:load", () =>{
 
     let el = document.querySelector("#board");
-    // console.log(el);
+    //console.log(el.dataset.lists);
 
     if(el){
         new Vue({
@@ -32,7 +33,40 @@ document.addEventListener("turbolinks:load", () =>{
             },
 
             components:{
-                List: List,
+                List: List,     //全站可以使用 <List>元件
+                draggable: draggable,
+            },
+
+            methods:{
+                MoveList(event){
+
+                    // console.log(event);
+                    // console.log(event.moved.newIndex + 1);
+
+                    let data = new FormData();
+                    data.append("lists[position]", event.moved.newIndex +1 );
+
+                    Rails.ajax({
+
+                        /// lists/2(list.id)/move
+                        url: `/lists/${this.lists[event.moved.newIndex].id}/move`,    
+                        type: "put",
+                        data: data,
+                        dataType: "json",
+                        
+                        success: (response)=>{
+                            console.log(response);
+                        },
+
+                        error: (err)=>{
+                            console.log(err);
+                        },
+
+
+                    })
+
+
+                },
             },
 
         })

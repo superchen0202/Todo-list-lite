@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_action :set_list, only: %i[ show edit update destroy ]
+  before_action :set_list, only: [ :show, :edit, :update, :destroy, :move]
   before_action :authenticate_user!
 
   # GET /lists or /lists.json
@@ -58,6 +58,18 @@ class ListsController < ApplicationController
     end
   end
 
+  def move
+
+    # Test
+    # render json: params
+
+    # render json: params[:lists][:position]
+    # render json: list_params[:position]
+    @list.insert_at(params[:lists][:position].to_i)
+    render "show.json"
+
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
@@ -68,4 +80,5 @@ class ListsController < ApplicationController
     def list_params
       params.require(:list).permit(:name, :position)
     end
+
 end

@@ -13,11 +13,12 @@
       <draggable class="list-group" tag="ul" v-model="list" v-bind="dragOptions" @start="drag = true" @end="drag = false">
       
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+          
           <li class="list-group-item" v-for="element in list" :key="element.order">
-            <i :class="element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click="element.fixed = !element.fixed" aria-hidden="true"></i>
-            {{ element.name }}
+          
+              <i :class="element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click="element.fixed = !element.fixed" aria-hidden="true"></i>
+              {{ element.name }}
           </li>
-        
         </transition-group>
 
       </draggable>
@@ -55,6 +56,7 @@ export default {
   },
 
   data() {
+
     return {
       list: message.map((name, index) => {
         return { name, order: index + 1 };
