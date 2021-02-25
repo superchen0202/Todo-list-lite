@@ -41,7 +41,37 @@ export default new Vuex.Store({
                 }
 
             })
-        }
+        },
+
+        MoveList({commit, state}, event){
+
+            // console.log(event);
+            // console.log(event.moved.newIndex + 1);
+
+            let data = new FormData();
+            data.append("lists[position]", event.moved.newIndex +1 );
+
+            Rails.ajax({
+
+                /// lists/2(list.id)/move
+                url: `/lists/${state.lists[event.moved.newIndex].id}/move`,    
+                type: "put",
+                data: data,
+                dataType: "json",
+                
+                success: (response)=>{
+                    //console.log(response);
+                },
+
+                error: (err)=>{
+                    console.log(err);
+                },
+
+
+            })
+
+        },
+
     },
 
 
