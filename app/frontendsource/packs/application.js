@@ -38,7 +38,18 @@ document.addEventListener("turbolinks:load", () =>{
             // },
 
             computed:{
-                ...mapGetters(["lists"])
+                
+                // ...mapGetters(["lists"]),
+                lists:{
+                    get(){
+                        return this.$store.state.lists;
+                    },
+    
+                    set(value){
+                        this.$store.commit("UPDATE_LISTS", value);
+                    }
+                }
+
             },
 
             components:{
