@@ -11,13 +11,14 @@ import "styles"
 
 import Vue from 'vue/dist/vue.esm';
 import draggable from "vuedraggable";
-
+import store from "stores/list";
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 import List from "components/list";
+import {mapGetters, mapActions} from "vuex";
 
 document.addEventListener("turbolinks:load", () =>{
 
@@ -29,10 +30,15 @@ document.addEventListener("turbolinks:load", () =>{
         new Vue({
 
             el: el,
+            store: store,
             
-            data: {
-                lists: []
-                //JSON.parse(el.dataset.lists),
+            // data: {
+            //     lists: []
+            //     //JSON.parse(el.dataset.lists),
+            // },
+
+            computed:{
+                ...mapGetters(["lists"])
             },
 
             components:{
@@ -70,28 +76,13 @@ document.addEventListener("turbolinks:load", () =>{
                     })
 
                 },
+
+                ...mapActions(["LoadLists"]),
+
             },
 
-
             beforeMount(){
-                Rails.ajax({
-
-                    url: "/lists.json",
-                    type:"get",
-                    dataType:"json",
-
-                    success: (response)=>{
-                        console.log(response);
-                        this.lists = response;
-
-                    },
-                    error: (err) =>{
-                        console.log(err);
-                    }
-
-                })
-
-
+                this.LoadLists();
             }
 
         })
