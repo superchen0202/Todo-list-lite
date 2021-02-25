@@ -31,7 +31,8 @@ document.addEventListener("turbolinks:load", () =>{
             el: el,
             
             data: {
-                lists: JSON.parse(el.dataset.lists),
+                lists: []
+                //JSON.parse(el.dataset.lists),
             },
 
             components:{
@@ -70,6 +71,28 @@ document.addEventListener("turbolinks:load", () =>{
 
                 },
             },
+
+
+            beforeMount(){
+                Rails.ajax({
+
+                    url: "/lists.json",
+                    type:"get",
+                    dataType:"json",
+
+                    success: (response)=>{
+                        console.log(response);
+                        this.lists = response;
+
+                    },
+                    error: (err) =>{
+                        console.log(err);
+                    }
+
+                })
+
+
+            }
 
         })
     }
