@@ -15,9 +15,20 @@ export default new Vuex.Store({
     },
 
     mutations:{
+
         UPDATE_LISTS(state, lists){
             state.lists = lists;
-        }
+        },
+
+        REPLACE_CARD(state, card){
+            let list_index = state.lists.findIndex(list => list.id ==card.list_id);
+            let card_index = state.lists[list_index].cards.findIndex(item => item.id == card.id);
+
+            console.log(list_index, card_index);
+            state.lists[list_index].cards.splice(card_index, 1 , card)
+
+        }, 
+
     },
 
     actions:{
@@ -84,7 +95,10 @@ export default new Vuex.Store({
                 data,
                 dataType: "json",
 
-                success: (response)=>{console.log(response)},
+                success: (response)=>{
+                    console.log(response);
+                    commit("REPLACE_CARD", response);
+                },
                 error:(err) =>{console.log(err)},
 
             })
