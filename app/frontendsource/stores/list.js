@@ -72,6 +72,25 @@ export default new Vuex.Store({
 
         },
 
+        UpdateCard({commit},{id, name}){
+            
+            let data = new FormData();
+            data.append("card[name]", name );
+
+            Rails.ajax({
+
+                url: `/cards/${id}`,
+                type: "put",           
+                data,
+                dataType: "json",
+
+                success: (response)=>{console.log(response)},
+                error:(err) =>{console.log(err)},
+
+            })
+
+        }
+
     },
 
 

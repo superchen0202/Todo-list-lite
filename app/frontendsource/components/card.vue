@@ -3,19 +3,20 @@
 
   <div>
 
-    <div class="card">
+    <div class="card" v-if="!editing" @click="editingMode">
       {{ card.name }}
     </div>
 
-    <div class="dialog" v-if="true">
+    <div class="dialog" v-if="editing">
 
-      <div class="inner">
-        
-        <a href="#" class="closeButton"><i class="fas fa-times"></i></a>
-        <textarea class="content" v-model="card.name"></textarea>
-        <button class="updateButton">更新</button>
-
+      <div class="inner">  
+        <a href="#" class="closeButton" @click="editingMode">
+            <i class="fas fa-times"></i>
+        </a>
+        <textarea class="content" v-model="card_name"></textarea>
+        <button class="updateButton" @click="updateCard" >更新</button>
       </div>
+
     </div>
 
   </div>
@@ -25,12 +26,46 @@
 
 // JS
 <script>
+
+import {mapActions} from "vuex";
     
 export default {
 
     name: "Card",
     props:["card"],
 
+    data: function(){
+
+        return{
+            editing: false,
+            card_name: this.card.name,
+        }
+
+    },
+
+    methods: {
+
+        
+        editingMode(event){
+            event.preventDefault();
+            this.editing = !this.editing;   
+            //console.log(this.editing);
+        },
+
+        updateCard(event){
+            event.preventDefault();
+            this.editing = !this.editing;  
+            
+            //---TEST---
+            //console.log("更新!");
+            //console.log(this.editing);
+
+            //---把值傳給後端API
+            this.$store.dispatch("UpdateCard", {id: this.card.id, name: this.card_name});
+
+        },
+        
+    }
 }
 
 </script>
