@@ -18,6 +18,8 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import List from "components/list";
+import Newlist from "components/newlist";
+
 import {mapGetters, mapActions} from "vuex";
 
 document.addEventListener("turbolinks:load", () =>{
@@ -55,6 +57,7 @@ document.addEventListener("turbolinks:load", () =>{
             components:{
                 List: List,     //全站可以使用 <List>元件
                 draggable: draggable,
+                Newlist: Newlist,
             },
 
             methods:{

@@ -21,9 +21,9 @@ export default new Vuex.Store({
         },
 
         REPLACE_CARD(state, card){
+
             let list_index = state.lists.findIndex(list => list.id ==card.list_id);
             let card_index = state.lists[list_index].cards.findIndex(item => item.id == card.id);
-
             console.log(list_index, card_index);
             state.lists[list_index].cards.splice(card_index, 1 , card)
 
@@ -44,7 +44,7 @@ export default new Vuex.Store({
                 success: (response)=>{
                     
                     commit("UPDATE_LISTS", response);
-                    console.log(response);
+                    //console.log(response);
                 },
 
                 error: (err) =>{
@@ -96,7 +96,7 @@ export default new Vuex.Store({
                 dataType: "json",
 
                 success: (response)=>{
-                    console.log(response);
+                    //console.log(response);
                     commit("REPLACE_CARD", response);
                 },
                 error:(err) =>{console.log(err)},
