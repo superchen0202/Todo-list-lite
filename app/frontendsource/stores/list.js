@@ -33,6 +33,11 @@ export default new Vuex.Store({
             state.lists.push(list)
         },
 
+        REMOVE_LIST(state, list_id){
+            let list_index = state.lists.findIndex( (list) => list.id == list_id );
+            state.lists.splice(list_index, 1);
+        },
+
     },
 
     actions:{
@@ -131,6 +136,28 @@ export default new Vuex.Store({
 
 
         },
+
+        DeleteList( {commit}, list_id){
+            
+            Rails.ajax({
+                
+                url:`/lists/${list_id}`,
+                dataType: "json",
+                type: "delete",
+
+                success: (response) =>{
+                    console.log(response)
+                    commit("REMOVE_LIST", list_id);
+                },
+
+                error: (err) =>{
+                    console.log(err)
+                },
+
+
+            })
+
+        }
 
     },
 

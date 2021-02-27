@@ -3,7 +3,14 @@
 
     <div class="list">
         
-        <h2 class="header">{{list.name}}</h2>
+        <h2 class="header">
+            
+            {{list.name}}
+
+            <a href="#" @click="DeleteList">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+        </h2>
         
         <div class="deck">
             <draggable v-model="cards" group="list" @change="MoveCard">
@@ -22,8 +29,6 @@
        
     </div>
 
-
-
 </template>
 
 <!-- JS -->
@@ -32,7 +37,6 @@
 import Card from "components/card";
 import Rails from "@rails/ujs"
 import draggable from "vuedraggable";
-
 
 export default{
     
@@ -128,6 +132,16 @@ export default{
             }
 
         },
+        
+        DeleteList(event){
+            event.preventDefault();
+            
+            if(confirm("確認刪除？")){
+                //console.log("艾莉刪刪");
+                this.$store.dispatch("DeleteList", this.list.id);
+
+            }
+        },
 
     }
 
@@ -143,7 +157,7 @@ export default{
     }
 
     .header{
-        @apply font-thin
+        @apply font-thin flex justify-between
     }
 
     .deck{
