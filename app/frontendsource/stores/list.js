@@ -29,6 +29,10 @@ export default new Vuex.Store({
 
         }, 
 
+        ADD_LIST(state, list){ 
+            state.lists.push(list)
+        },
+
     },
 
     actions:{
@@ -103,7 +107,30 @@ export default new Vuex.Store({
 
             })
 
-        }
+        },
+
+        CreateList({commit}, list_name){
+
+            let data = new FormData();
+            data.append("list[name]", list_name );
+
+            Rails.ajax({
+
+                url: "/lists",
+                type: "post",
+                data: data,
+                dataType: "json",
+
+                success: (response)=>{
+                    console.log(response);
+                    commit("ADD_LIST", response);
+                },
+                error: (err)=>{console.log(error)},
+
+            })
+
+
+        },
 
     },
 

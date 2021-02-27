@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         
-        <button class="new_button">
-            <i class="fas fa-plus"></i> 新增其它列表
+        <button class="new_button" v-if="!Create" @click="ChangeMode">
+            <i class="fas fa-plus"></i>新增其它列表
         </button>
         
-        <input type="text" class="list_name" placeholder="列表標題">
-        <button class="button create_button">建立</button>
-        <button class="button cancel_button">取消</button>
+        <input type="text" class="list_name" placeholder="列表標題" v-if="Create" v-model="list_name" ref="list_name">
+        <button class="button create_button" v-if="Create" @click="CreateList">建立</button>
+        <button class="button cancel_button" v-if="Create" @click="ChangeMode">取消</button>
     </div>
 
 </template>
@@ -17,6 +17,37 @@
 export default {
 
     name:"Newlist",
+    
+    data: function(){
+
+        return {
+            Create: false,
+            list_name: "",
+        }
+    },
+    
+    methods:{
+
+        ChangeMode(event){
+
+            event.preventDefault();
+            this.Create = !this.Create;
+            //console.log(this.Create);
+            this.$nextTick(()=>this.$refs.list_name.focus());
+        
+        },
+
+        CreateList(event){
+            
+            event.preventDefault();
+            this.$store.dispatch("CreateList", this.list_name);
+            this.Create = !this.Create;
+            this.list_name ="";
+            //console.log("建立完成！");
+        }
+
+    }
+
     
 }
 </script>

@@ -18,9 +18,8 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import List from "components/list";
-import Newlist from "components/newlist";
-
 import {mapGetters, mapActions} from "vuex";
+import Newlist from "components/newlist";
 
 document.addEventListener("turbolinks:load", () =>{
 

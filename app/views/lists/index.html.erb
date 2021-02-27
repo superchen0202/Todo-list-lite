@@ -11,11 +11,11 @@
 <div id ="board" class="py-5" >
   
   <draggable class="flex" v-model="lists" @change="MoveList" >
+   
     <List v-for="list in lists" :list ="list" :key="list.id"></List>
+    <Newlist></Newlist>
+
   </draggable>
-
-  <Newlist></Newlist>
-
 </div>
 
 

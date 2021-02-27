@@ -23,7 +23,10 @@ class ListsController < ApplicationController
 
   # POST /lists or /lists.json
   def create
-    @list = current_user.lists..new(list_params)
+    
+    @list = current_user.lists.new(list_params)
+
+    # render json: params
 
     respond_to do |format|
       if @list.save
