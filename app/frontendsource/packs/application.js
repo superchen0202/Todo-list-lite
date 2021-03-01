@@ -27,7 +27,9 @@ document.addEventListener("turbolinks:load", () =>{
     //console.log(el.dataset.lists);
 
     if(el){
-        
+
+        window.$store = store;
+                
         new Vue({
 
             el: el,

@@ -127,7 +127,7 @@ export default new Vuex.Store({
                 dataType: "json",
 
                 success: (response)=>{
-                    console.log(response);
+                    // console.log(response);
                     commit("ADD_LIST", response);
                 },
                 error: (err)=>{console.log(error)},
