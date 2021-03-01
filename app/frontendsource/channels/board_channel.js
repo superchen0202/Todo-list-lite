@@ -11,7 +11,7 @@ consumer.subscriptions.create( {channel: "BoardChannel"}, {
             window.$store.commit(data.commit, JSON.parse(data.payload));
         }
         //console.log(data);
-      
+        //GOOD
     },
 
   })
