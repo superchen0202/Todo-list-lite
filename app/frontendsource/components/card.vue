@@ -45,7 +45,6 @@ export default {
 
     methods: {
 
-        
         editingMode(event){
             event.preventDefault();
             this.editing = !this.editing;   

@@ -106,7 +106,7 @@ export default new Vuex.Store({
 
                 success: (response)=>{
                     //console.log(response);
-                    commit("REPLACE_CARD", response);
+                    //commit("REPLACE_CARD", response);
                 },
                 error:(err) =>{console.log(err)},
 
@@ -128,7 +128,7 @@ export default new Vuex.Store({
 
                 success: (response)=>{
                     // console.log(response);
-                    commit("ADD_LIST", response);
+                    //commit("ADD_LIST", response);
                 },
                 error: (err)=>{console.log(error)},
 
@@ -146,8 +146,8 @@ export default new Vuex.Store({
                 type: "delete",
 
                 success: (response) =>{
-                    console.log(response)
-                    commit("REMOVE_LIST", list_id);
+                    // console.log(response)
+                    // commit("REMOVE_LIST", list_id);
                 },
 
                 error: (err) =>{
@@ -160,7 +160,5 @@ export default new Vuex.Store({
         }
 
     },
-
-
 
 })
